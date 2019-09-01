@@ -23,3 +23,11 @@ const listToArray = list => {
   }
   return arr;
 };
+
+const prepend = (element, list) => {
+  let newList = {};
+  newList.value = element;
+  newList.rest = list;
+
+  return newList;
+};
