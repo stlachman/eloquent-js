@@ -9,3 +9,17 @@ const arrayToList = arr => {
 };
 
 arrayToList([1, 2, 3]);
+
+const listToArray = list => {
+  const arr = [];
+
+  let node = list;
+
+  while (node) {
+    if (node.value) {
+      arr.push(node.value);
+    }
+    node = node.rest;
+  }
+  return arr;
+};
