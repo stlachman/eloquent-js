@@ -31,15 +31,22 @@ class Group {
     }
     return g;
   }
+
+  [Symbol.iterator]() {
+    return new GroupIterator(this);
+  }
 }
 
-let group = Group.from([10, 20]);
+class GroupIterator {
+  constructor(group) {
+    this.group = group;
+    this.current = 0;
+  }
 
-console.log(group.has(10));
-// → true
-console.log(group.has(30));
-// → false
-group.add(10);
-group.delete(10);
-console.log(group.has(10));
-// → false
+  next() {
+    if (this.current === this.group.store.length) return { done: true };
+    let value = this.group.store[this.current];
+    this.current++;
+    return { value, done: false };
+  }
+}
